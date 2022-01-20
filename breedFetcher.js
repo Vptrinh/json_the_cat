@@ -7,18 +7,20 @@ const fetchBreedDescription = function(breedName, callback) {
   request(url, (error, response, body) => {
     if (error) {
     //send back the error
-      return callback(error, null);
-    }
-    let data = JSON.parse(body);
-    const breed = data[0];
-    if (breed) {
-      callback(null, breed.description)
-    } else {
-      callback ('breed not found');
+      callback(error, null);
     }
     // if (response.statusCode !== 200) {
     //   return callback(`Server response: ${response.statusCode}`, null);
     // }
+    let data = JSON.parse(body);
+    // console.log(data);
+    const breed = data[0];
+    if (breed) {
+      callback(null, breed.description)
+    } else {
+      callback ('Breed not found', null);
+    }
+    
     // if (data[0] === undefined) {
     //   console.log("Breed cannot be found.");
     // }
